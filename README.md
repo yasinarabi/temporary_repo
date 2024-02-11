@@ -1,6 +1,9 @@
-# This is a temporary repository and will delete after a couple of days
-# Content of this repo are only for presentation of an IAU university lecture.
+### This is a temporary repository and will delete after a couple of days
+### Content of this repo are only for presentation of an IAU university lecture.
 
 # پروژه درس الگوریتم
 
 یک سامانه نگه داری و تعمیرات ماشین آلات سواری نوشته شده به وسیله Django و با استفاده از کتابخانه Bootstrap
+در این سامانه هر شخص بعد از لاگین کردن امکان ثبت تعدادی اتومبیل شخصی دارد و مشخص میکند که هر کدام از آنها چه سرویس های دوره ای دارد.
+مثلا روغن موتور هر چند روز یکبار باید تعویض گردد.
+همچنین امکان تعداد روز های باقیمانده تا یک سرویس خاص و یا روزهای گذشته از یک سرویس خاص وجود دارد.
