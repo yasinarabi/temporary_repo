@@ -1,0 +1,54 @@
+.dashboard-card {
+    min-width: 22rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.1);
+    opacity: 0.9;
+}
+
+.dashboard-card:hover {
+    opacity: 1.0;
+}
+
+.edit-cards {
+    width: 50px;
+    height: 50px;
+    background-color: blueviolet;
+    color: white;
+    font-size: 30px;
+    padding-top: 5px;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    border-radius: 25px;
+    text-align: center;
+    border: none;
+}
+
+.save-dashboard {
+    width: 50px;
+    height: 50px;
+    background-color: blueviolet;
+    color: white;
+    font-size: 30px;
+    padding-top: 5px;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    border-radius: 25px;
+    text-align: center;
+    border: none;
+}
+
+.discard-changes {
+    width: 50px;
+    height: 50px;
+    background-color: blueviolet;
+    color: white;
+    font-size: 30px;
+    padding-top: 5px;
+    position: absolute;
+    left: 85px;
+    bottom: 20px;
+    border-radius: 25px;
+    text-align: center;
+    border: none;
+}

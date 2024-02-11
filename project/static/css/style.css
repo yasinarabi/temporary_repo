@@ -1,0 +1,229 @@
+@import url("/static/dist/css/bootstrap-icons.css");
+
+@font-face {
+    font-family: Vazirmatn;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../font/Vazirmatn-Regular.woff2");
+}
+
+@font-face {
+    font-family: Vazirmatn;
+    font-style: normal;
+    font-weight: 700;
+    src: url("../font/Vazirmatn-Bold.woff2");
+}
+
+body {
+    font-family: 'Vazirmatn', sans-serif !important;
+    background-color: #00DBDE;
+    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+}
+
+nav li a {
+    border-radius: 5px;
+}
+
+nav li a:hover {
+    background-color: white;
+    color: black !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.index {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.index-item {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.index-item:hover {
+    transform: translateY(-15px);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.index-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+.index-item h2 {
+    font-size: 20px;
+    margin: 10px;
+    color: #333;
+}
+
+.index-item p {
+    font-size: 16px;
+    margin: 10px;
+    color: #666;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------
+    OVERLAY
+----------------------------------------------------- */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.overlay-content {
+    background-color: white;
+    max-height: 95%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    overflow-y: auto;
+}
+
+input[type=checkbox] {
+    -webkit-box-shadow: 0px 0px 0px 1px #8f8e8a;
+    -moz-box-shadow: 0px 0px 0px 1px #8f8e8a;
+    box-shadow: 0px 0px 0px 1px #8f8e8a;
+}
+
+/* ---------------------------------------------------
+    PAGINATION
+----------------------------------------------------- */
+
+.pagination>li:first-child>a {
+    border-radius: 0px 5px 5px 0px !important;
+}
+
+.pagination>li:last-child>a {
+    border-radius: 5px 0px 0px 5px !important;
+}
+
+.pagination>li.active {
+    z-index: 0 !important;
+}
+
+.page-size-select-group {
+    width: auto;
+    margin-bottom: 1rem;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.page-size-select-group>label{
+    border-radius: 0px 5px 5px 0px !important;
+}
+
+.page-size-select-group>select{
+    border-radius: 5px 0px 0px 5px !important;
+}
+
+.input-group>input{
+    border-radius: 5px !important;
+}
+
+.input-group>div{
+    border-radius: 8px !important;
+}
+
+.pagination {
+    padding: 0;
+}
+
+.table-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 10px 0px !important;
+}
+
+.table {
+    margin-bottom: 0px;
+}
+
+#filter-form>div>input {
+    border-radius: 5px !important;
+}
+
+#filter-form>div>select {
+    border-radius: 5px !important;
+}
+
+#filter-range>div>select {
+    border-radius: 5px !important;
+}
+
+.loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 4;
+}
+
+.loading.hidden {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 4;
+    display: none !important;
+}
+
+.image-viewer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 4;
+}
+
+.image-viewer img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* .image-viewer a {
+} */
+
+.image-viewer.hidden {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 4;
+    display: none !important;
+}
+
+.thumbnail {
+    cursor: pointer;
+}
+
+#path-container {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+}

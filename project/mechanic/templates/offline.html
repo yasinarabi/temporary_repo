@@ -1,0 +1,8 @@
+{% extends 'error/error_base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-2 p-3 d-flex flex-column justify-content-center" style="--bs-bg-opacity: .5; border-radius: 5px; max-width: 600px;" dir="rtl">
+    <h1 class="text-center">شما آفلاین هستید! اتصال اینترنت خود را چک کنید.</h1>
+    <img src="{% static 'img/error/offline.png' %}" class="img-fluid" alt="Responsive image" style="opacity: 0.85;">
+</div>
+{% endblock %}

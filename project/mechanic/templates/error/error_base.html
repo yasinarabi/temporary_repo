@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/error_style.css'%}" rel="stylesheet">
+    {% block extra_css %}{%endblock%}
+    <title>{{ title|default:"خطا" }}</title>
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg bg-dark" dir="rtl">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="{% url 'home' %}">گهر صنعت</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item mx-2" id="warehouse_nav_item">
+                        <a class="nav-link active text-white" aria-current="page"
+                            href="{% url 'home_warehouse' %}">انبار</a>
+                    </li>
+                    <li class="nav-item mx-2" id="procurement_nav_item">
+                        <a class="nav-link active text-white" aria-current="page" href="#">مدیریت خرید</a>
+                    </li>
+                    <li class="nav-item mx-2" id="users_nav_item">
+                        <a class="nav-link active text-white" aria-current="page" href="{% url 'home_users' %}">کاربران</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active text-white" aria-current="page" id="logout" href="#">خروج از
+                            سیستم</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+    {% block content%}{% endblock %}
+    <!-- ‌Bootstrap -->
+    <script src="{% static 'dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- JQuery -->
+    <script src="{% static 'dist/js/jquery-3.7.0.min.js' %}"></script>
+    <!-- CSRF TOKEN -->
+    <script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+    <!-- Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_scripts %} {% endblock %}
+    {% if user.is_authenticated %}
+    <script>
+        has_permission_to_app("warehouse").then((result) => {
+            if(result) {
+                $("#warehouse_nav_item").show()
+            }else{
+                $("#warehouse_nav_item").hide()
+            }
+        });
+        has_permission_to_app("auth").then((result) => {
+            if(result) {
+                $("#users_nav_item").show()
+            }else{
+                $("#users_nav_item").hide()
+            }
+        });
+    </script>
+    {% endif %}
+</body>
+
+</html>

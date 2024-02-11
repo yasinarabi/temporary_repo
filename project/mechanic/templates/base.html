@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% load pwa %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Yasin Arabi&lt;yasinarabi@gmail.com>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+    <title>{% if title %}{{title}}{% else %}{{logo_text}}{%endif%}</title>
+    {% progressive_web_app_meta %}
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg bg-dark" dir="rtl">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="{% url 'home' %}">{{ logo_text }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    {% if warehouse %}
+                    <li class="nav-item mx-2" id="warehouse_nav_item">
+                        <a class="nav-link active text-white" aria-current="page"
+                            href="{% url 'home_warehouse' %}">انبار</a>
+                    </li>
+                    {% endif %}
+                    {% if procurement %}
+                    <li class="nav-item mx-2" id="procurement_nav_item">
+                        <a class="nav-link active text-white" aria-current="page"
+                            href="{% url 'home_procurement' %}">مدیریت خرید</a>
+                    </li>
+                    {% endif %}
+                    {% if users %}
+                    <li class="nav-item mx-2" id="users_nav_item">
+                        <a class="nav-link active text-white" aria-current="page"
+                            href="{% url 'home_users' %}">کاربران</a>
+                    </li>
+                    {% endif %}
+                    {% if c12e %}
+                    <li class="nav-item mx-2" id="c12e_nav_item">
+                        <a class="nav-link active text-white" aria-current="page" href="{% url 'home_c12e' %}">پیام
+                            ها</a>
+                    </li>
+                    {% endif %}
+                    {% if workshop %}
+                    <li class="nav-item mx-2" id="workshop_nav_item">
+                        <a class="nav-link active text-white" aria-current="page"
+                            href="{% url 'home_workshop' %}">کارگاه ساخت
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          حساب کاربری
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% if user.is_authenticated and user.is_superuser %}
+                                <li><a class="dropdown-item" href="{% url 'settings' %}">تنظیمات</a></li>
+                            {% endif %}
+                            <li class="nav-item mx-2">
+                                <a class="nav-link active" aria-current="page" id="logout" href="#">خروج از
+                                    سیستم</a>
+                            </li>
+                        </ul>
+                      </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+    {% include "path.html" %}
+    <div class="loading d-flex justify-content-center align-items-center hidden">
+        <img src="{% static 'img/icon/Loading.gif' %}" alt="Loading" width="50px" height="50px" class="mx-auto">
+    </div>
+    <div class="image-viewer d-flex justify-content-center align-items-center hidden">
+        <img src="" alt="Image Viewer" class="mx-auto">
+        <a class="ms-auto mb-auto text-light" href="#"><i class="bi bi-x" style="font-size: 3em;"></i></a>
+    </div>
+    {% block content%}{% endblock %}
+    <!-- ‌Bootstrap -->
+    <script src="{% static 'dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- JQuery -->
+    <script src="{% static 'dist/js/jquery-3.7.0.min.js' %}"></script>
+    <!-- CSRF TOKEN -->
+    <script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+    <!-- Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_scripts %} {% endblock %}
+    {% if user.is_authenticated %}
+    <script>
+        has_permission_to_app("warehouse").then((result) => {
+            if (result) {
+                $("#warehouse_nav_item").show()
+            } else {
+                $("#warehouse_nav_item").hide()
+            }
+        });
+        has_permission_to_app("procurement").then((result) => {
+            if (result) {
+                $("#procurement_nav_item").show()
+            } else {
+                $("#procurement_nav_item").hide()
+            }
+        });
+        has_permission_to_app("auth").then((result) => {
+            if (result) {
+                $("#users_nav_item").show()
+            } else {
+                $("#users_nav_item").hide()
+            }
+        });
+    </script>
+    {% endif %}
+</body>
+
+</html>

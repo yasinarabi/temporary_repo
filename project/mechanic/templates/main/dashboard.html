@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<main dir="rtl">
+
+    <div class="d-flex flex-row flex-wrap justify-content-center bd-highlight mb-3" id="cards">
+        <div class="p-2 m-2 card dashboard-card d-none align-items-center justify-content-center" id="add-card">
+            <i class="bi bi-plus pt-4 text-secondary" style="font-size: 5em;"></i>
+        </div>
+    </div>
+    <button class="edit-cards"><i class="bi bi-pencil-fill"></i></button>
+    <button class="save-dashboard"><i class="bi bi-floppy-fill"></i></button>
+    <button class="discard-changes"><i class="bi bi-x"></i></button>
+</main>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    function load_cards(){
+        $(".loading").removeClass("hidden");
+        $.ajax({
+            url: "{% url 'dashboard_item_list' %}",
+            type: 'GET',
+            success: function (data) {
+                count_cards = data
+                data.cards.forEach(function (element, index) {
+                    $(element).insertBefore('#add-card');
+                    console.log(index);
+                });
+                $(".loading").addClass("hidden");
+            },
+            error: function (xhr, status, error) {
+                alert('Error loading items from API:', error);
+                $(".loading").addClass("hidden");
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        load_cards();
+        $(".save-dashboard").hide();
+        $(".discard-changes").hide();
+        $(".edit-cards").on("click", function() {
+            $("#add-card").removeClass("d-none").addClass("d-flex");
+            $(".edit-cards").hide();
+            $(".save-dashboard").show();
+            $(".discard-changes").show();
+            $(".dashboard-card")
+        });
+        $(".discard-changes").on("click", function() {
+            $(".save-dashboard").hide();
+            $(".discard-changes").hide();
+            $(".edit-cards").show();
+            $("#add-card").removeClass("d-lex").addClass("d-none");
+        });
+    })
+</script>
+{% endblock %}
